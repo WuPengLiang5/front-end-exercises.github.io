@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Ds-Digital';
+    src: url('./DS-Digital/DS-DIGI-1.ttf'),
+    url('./DS-Digital/DS-DIGIB-2.ttf'),
+    url('./DS-Digital/DS-DIGII-3.ttf'),
+    url('./DS-Digital/DS-DIGIT-4.ttf');
+}

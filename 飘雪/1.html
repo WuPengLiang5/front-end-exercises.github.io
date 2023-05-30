@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飘雪</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url('./1.webp');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        let canvas = document.querySelector('canvas')
+        let context = canvas.getContext('2d') //笔
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+
+        let nums = 200;
+        let snows = [];
+        for(let i = 0;i < nums;i++){
+            snows.push({
+                x:Math.random()*w,
+                y:Math.random()*h,
+                r:Math.random()*3+1
+            })
+        }
+        let move = () => {
+            for(let i = 0;i < nums;i++){
+                let snow = snows[i];
+                snow.x += Math.random()*2 + 1;
+                snow.y += Math.random()*2 + 1;
+                if(snow.x > w){
+                    snow.x = 0;
+                }
+                if(snow.y > h){
+                    snow.y = 0;
+                }
+            }
+        }
+        let draw = () => {
+            context.clearRect(0,0,w,h) //橡皮擦擦一下
+            context.beginPath() // 开始画画这个步骤
+            context.fillStyle = 'rgb(255,255,255)'
+            context.shadowColor = 'rgb(255,255,255)'
+            context.shadowBlur = 10 
+            for(let i = 0;i < nums;i++){
+                let snow = snows[i];
+                context.moveTo(snow.x,snow.y);
+                context.arc(snow.x,snow.y,snow.r,0,Math.PI*2);
+            }
+            context.fill();// 填充
+            context.closePath();//关闭路径
+            move();
+        }
+        draw();
+        setInterval(draw,30);
+    </script>
+</body>
+</html>

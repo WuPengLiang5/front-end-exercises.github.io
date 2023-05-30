@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        width: 70px;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .box{
+        width: 60px;
+        height: 60px;
+        /* background-color: aliceblue; */
+        border: 1px solid black;
+    }
+    button{
+        background-color: #3792ff;
+        color: #ccedfe;
+        border: 1px solid whitesmoke;
+        border-radius: 2px;
+    }
+</style>
+<body>
+    <div class="container">
+        <label for="">#ffffff</label>
+        <button>开始取色</button>
+        <div class="box"></div>
+    </div>
+</body>
+<script>
+const btn = document.querySelector('button')
+const box = document.querySelector('.box')
+const label = document.querySelector('label')
+
+btn.onclick = async () => {
+    const dropper = new EyeDropper()
+    try{
+        const result = await dropper.open()
+        box.style.backgroundColor = label.textContent = result.sRGBHex;
+        // box.style.backgroundColor = '#6b4043'
+        console.log(box.style)
+
+
+    }catch{
+        console.log('user canceled')
+    }
+}
+</script>
+</html>
